@@ -12,4 +12,20 @@ public class EstadoMisioneros {
 	 public static Action C = new DynamicAction("C");
 	 public static Action CC = new DynamicAction("CC");
 	 public static Action MC = new DynamicAction("MC");
+	 
+	 
+	 public EstadoMisioneros() {
+		 this(3, 3, true);
+		 }
+		 public EstadoMisioneros(EstadoMisioneros mc) {
+		 this(mc.getnMisioneros(), mc.getnCanibales(), mc.isBarcaIzq());
+		 }
+		 public EstadoMisioneros(int nMisioneros, int nCanibales, boolean
+		 barcaIzq) {
+		 this.nMisioneros = nMisioneros;
+		 this.nCanibales = nCanibales;
+		 this.barcaIzq = barcaIzq;
+		 }
+	 
+	 
 }
