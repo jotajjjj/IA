@@ -1,16 +1,36 @@
-package pruebaMovimientosRubik;
+package rubik;
 
-//import rubik.EstadoRubik;
+import Misioneros.EstadoMisioneros;
+import aima.core.agent.Action;
+import aima.core.agent.impl.DynamicAction;
 
-public class RubikPruebaEstado {
+public class EstadoRubik {
 
 	
 	private final int dim=3;
 	private final int nCaras=6;
 	// representamos la cara, la fila y la columna
-	private int [][][] rubik;
+	public static Action F = new DynamicAction("F" );
+	 public static Action R = new DynamicAction("R");
+	 public static Action U = new DynamicAction("U");
+	 public static Action B = new DynamicAction("B");
+	 public static Action L = new DynamicAction("L");
+	 public static Action D = new DynamicAction("D");
 	
-	public RubikPruebaEstado(){
+	 
+	 public static Action FR = new DynamicAction("FR" );
+	 public static Action RR = new DynamicAction("RR");
+	 public static Action UR = new DynamicAction("UR");
+	 public static Action BR = new DynamicAction("BR");
+	 public static Action LR = new DynamicAction("LR");
+	 public static Action DR = new DynamicAction("DR");
+	 
+	 
+	 
+	 private int [][][] rubik;
+	
+	
+	public EstadoRubik(){
 		
 		this.rubik  = new int [this.nCaras][this.dim][this.dim]; 
 		
@@ -78,9 +98,9 @@ public class RubikPruebaEstado {
 	}
 	
 	
-public RubikPruebaEstado(RubikPruebaEstado e){
+	public EstadoRubik(EstadoRubik e){
 		
-	this.rubik  = new int [this.nCaras][this.dim][this.dim];
+		this.rubik  = new int [this.nCaras][this.dim][this.dim];
 		
 		for (int k = 0; k < this.nCaras; k++) {
 			
@@ -140,9 +160,6 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 		aux6=cloneF(1,1);
 		aux7=cloneF(1,2);
 		
-		//int[][] v=new int [3][3];
-		
-		//v=this.rubik[1].clone();
 		
 		this.copiaEnColumnaUnaFila(aux, 0, 2);//copiamos en bl0 col2
 		this.copiaEnFilaUnaColumnaReverse(aux2, 4, 2);
@@ -156,7 +173,6 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 		
 		
 	}
-	
 	public void movFR(){
 
 		int aux[][] = new int[1][3];
@@ -212,7 +228,6 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 	
 	
 	
-	
 	public void movR(){
 		/*
 		 * solo se juega concolumnas
@@ -249,6 +264,7 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 		this.copiaEnColumnaUnaFila(aux7, 2, 0);
 		
 	}
+	
 	
 	public void movRR(){
 		int aux1[][]= new int [3][1];
@@ -292,7 +308,7 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 		
 		
 	}
-
+	
 	
 	
 	
@@ -308,31 +324,16 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 		int aux3[][]= new int [3][1];
 		int aux4[][]= new int [3][1];
 		
-		
-		int aux5[][] = new int [1][3];
-		int aux6[][] = new int [1][3];
-		int aux7[][] = new int [1][3];
-		
-		
 		aux1=this.cloneF(5, 2);//copiamos el del bloque 5 la fila 3
 		aux2=this.cloneC(2, 2);
 		aux3=this.cloneF(4, 0);
 		aux4=this.cloneC(0, 0);
 		
-		aux5=this.cloneF(3, 0);
-		aux6=this.cloneF(3, 1);
-		aux7=this.cloneF(3, 2);
-		
-		
-		
 		this.copiaEnFilaUnaColumna(aux4, 5, 2);
-		this.copiaEnColumnaUnaFilaReverse(aux1, 2, 2);
+		this.copiaEnColumnaUnaFila(aux1, 2, 2);
 		this.copiaEnFilaUnaColumna(aux2, 4, 0);
-		this.copiaEnColumnaUnaFilaReverse(aux3, 0, 0);
+		this.copiaEnColumnaUnaFila(aux3, 0, 0);
 		
-		this.copiaEnColumnaUnaFila(aux5, 3, 2);
-		this.copiaEnColumnaUnaFila(aux6, 3, 1);
-		this.copiaEnColumnaUnaFila(aux7, 3, 0);
 		
 	}
 	
@@ -349,6 +350,8 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 		
 		
 		aux1=this.cloneF(5, 2);//copiamos el del bloque 5 la fila 3
+		
+		
 		aux2=this.cloneC(2, 2);
 		aux3=this.cloneF(4, 0);
 		aux4=this.cloneC(0, 0);
@@ -375,7 +378,60 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 		
 		
 	}
+/*	
+public void movBR(){
+		
+		int aux1[][]= new int [3][1];
+		int aux2[][]= new int [3][1];
+		int aux3[][]= new int [3][1];
+		int aux4[][]= new int [3][1];
+		
+		int aux5[][] = new int [1][3];
+		int aux6[][] = new int [1][3];
+		int aux7[][] = new int [1][3];
+		
+		
+		aux1=this.cloneF(5, 2);//copiamos el del bloque 5 la fila 3
+		this.copiaEnColumnaUnaFila(aux1, 0, 0);
+		aux1=this.cloneC(2, 2);
+		
+		
+		this.copiaEnColumnaUnaFilaReverse(aux5, 3, 0);
+		
+		
+		
+		
+		
+		
+		
+		
+		aux3=this.cloneF(4, 0);
+		aux4=this.cloneC(0, 0);
+		
+		aux5=this.cloneF(3, 0);
+		aux6=this.cloneF(3, 1);
+		aux7=this.cloneF(3, 2);
+		
+		
+		
+		
+		this.copiaEnFilaUnaColumnaReverse(aux2, 5, 2);
+		this.copiaEnColumnaUnaFila(aux3, 2, 2);
+		this.copiaEnFilaUnaColumnaReverse(aux4, 4, 0);
+		
+		
+		
+		this.copiaEnColumnaUnaFilaReverse(aux6, 3, 1);
+		this.copiaEnColumnaUnaFilaReverse(aux7, 3, 2);
+		
+		
+		
+		
+		
+		
+	}
 	
+	*/
 	
 	/*
 	 * 
@@ -418,7 +474,7 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 		
 	}
 	
-	public void movUR(){
+public void movUR(){
 		
 		int aux1[][]= new int [3][1];
 		int aux2[][]= new int [3][1];
@@ -458,7 +514,6 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 		
 		
 	}
-	
 	
 	
 	
@@ -549,8 +604,6 @@ public RubikPruebaEstado(RubikPruebaEstado e){
 		
 	}
 	
-	
-	
 public void movD(){
 		
 		int aux1[][]= new int [1][3];
@@ -592,68 +645,64 @@ public void movD(){
 		
 		
 	}
-	
 
-	public void movDR(){
-		
-		
-		int aux1[][]= new int [1][3];
-		int aux2[][]= new int [1][3];
-		int aux3[][]= new int [1][3];
-		int aux4[][]= new int [1][3];
-		
-		int aux5[][]= new int [1][3];
-		int aux6[][]= new int [1][3];
-		int aux7[][]= new int [1][3];
-		
-		/*
-		 * la cara que cambia completa es la 5
-		 * 
-		 * lo que se mueven son las filas 2 de los bl 0 1 2 y 3 
-		 * hacia la derecha.
-		 * 
-		 * 
-		 */
-		
-		aux1=this.cloneF(0, 2);
-		aux2=this.cloneF(1, 2);
-		aux3=this.cloneF(2, 2);
-		aux4=this.cloneF(3, 2);
-		
-		aux5=this.cloneF(5, 0);
-		aux6=this.cloneF(5, 1);
-		aux7=this.cloneF(5, 2);
-		
-		this.copiaEnColumnaUnaFilaReverse(aux5, 5, 0);
-		this.copiaEnColumnaUnaFilaReverse(aux6, 5, 1);
-		this.copiaEnColumnaUnaFilaReverse(aux7, 5, 2);
-		
-		this.copiaEnFilaUnaFila(aux1, 3, 2);
-		this.copiaEnFilaUnaFila(aux2, 0, 2);
-		this.copiaEnFilaUnaFila(aux3, 1, 2);
-		this.copiaEnFilaUnaFila(aux4, 2, 2);
-		
-		
-		
-		
-		
-		
+public void movDR(){
+	
+	
+	int aux1[][]= new int [1][3];
+	int aux2[][]= new int [1][3];
+	int aux3[][]= new int [1][3];
+	int aux4[][]= new int [1][3];
+	
+	int aux5[][]= new int [1][3];
+	int aux6[][]= new int [1][3];
+	int aux7[][]= new int [1][3];
+	
+	/*
+	 * la cara que cambia completa es la 5
+	 * 
+	 * lo que se mueven son las filas 2 de los bl 0 1 2 y 3 
+	 * hacia la derecha.
+	 * 
+	 * 
+	 */
+	
+	aux1=this.cloneF(0, 2);
+	aux2=this.cloneF(1, 2);
+	aux3=this.cloneF(2, 2);
+	aux4=this.cloneF(3, 2);
+	
+	aux5=this.cloneF(5, 0);
+	aux6=this.cloneF(5, 1);
+	aux7=this.cloneF(5, 2);
+	//aux7=this.rubik.clone();
+	this.copiaEnColumnaUnaFilaReverse(aux5, 5, 0);
+	this.copiaEnColumnaUnaFilaReverse(aux6, 5, 1);
+	this.copiaEnColumnaUnaFilaReverse(aux7, 5, 2);
+	
+	this.copiaEnFilaUnaFila(aux1, 3, 2);
+	this.copiaEnFilaUnaFila(aux2, 0, 2);
+	this.copiaEnFilaUnaFila(aux3, 1, 2);
+	this.copiaEnFilaUnaFila(aux4, 2, 2);
+	
+	
+	
+	
+	
+	
+}
+
+
+
+public void copiaEnColumnaUnaFilaReverse(int v[][],int bl,int nc){
+	
+	for (int i = 0; i < this.dim; i++) {
+		//System.out.println(v[i][0]);
+		//System.out.println(this.rubik[bl][i][nc]);
+		this.rubik[bl][i][nc]=v[0][this.dim-i-1];
 	}
-
-
-
 	
-
-	
-	public void copiaEnColumnaUnaFilaReverse(int v[][],int bl,int nc){
-		
-		for (int i = 0; i < this.dim; i++) {
-			//System.out.println(v[i][0]);
-			//System.out.println(this.rubik[bl][i][nc]);
-			this.rubik[bl][i][nc]=v[0][this.dim-i-1];
-		}
-		
-	}
+}
 	
 	
 	public void copiaEnFilaUnaFila(int v[][],int bl,int nf){
@@ -744,10 +793,12 @@ public void copiaEnColumnaUnaColumnaReves(int v[][],int bl,int nc){
 	public int [][] cloneC(int bloque,int nCol){
 		
 		int ret[][]=new int [3][1];
-		
+		//int ret[][][]=new int [1][3][1];
 		for (int i = 0; i < this.dim; i++) {
 			//copiamos la primera fila del bloque 5
 			ret[i][0]=this.rubik[bloque][i][nCol];
+			//this.rubik[bloque][nCol][0].clone();	
+		
 		}
 		return ret;
 		
@@ -831,7 +882,51 @@ public void copiaEnColumnaUnaColumnaReves(int v[][],int bl,int nc){
 	}
 	
 	
+	public boolean equals(Object o){
+		
+		int cont=0;
+		
+		if(this==o){
+			return true;
+		}
+		if ((o == null) || (this.getClass() != o.getClass())) {
+			return false;
+		}
+		
+		EstadoRubik otroEstado=(EstadoRubik)o;
+		
+		boolean seguimos=true;
 	
+		for (int k = 0; k < this.nCaras&&seguimos; k++) {
+			
+			
+			
+			for (int i = 0; i < this.dim&&seguimos; i++) {
+				
+				
+				for (int j= 0; j < this.dim&&seguimos; j++) {
+					
+					if(this.rubik[k][i][j]==otroEstado.rubik[k][i][j])
+						cont++;
+					else
+						seguimos=false;
+					
+				}
+				
+			}
+			
+			}
+
+			
+		return cont==54;
+		
+	}
+	
+	public int  [][][] getEstado(){
+		
+		
+		return this.rubik;
+	}
 	
 	
 }
